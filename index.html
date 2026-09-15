@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Security Warning</title>
+<title>Cookie Preferences</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -15,712 +14,229 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
-html,
 body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
-}
-
-body{
-    background:#c92b1d;
-    color:white;
+    background:#f5f6f8;
+    color:#202124;
+    min-height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
 }
 
-
-/* =========================
-   MAIN PAGE
-========================= */
-
-.container{
-    width:100%;
-    max-width:1400px;
-    height:100vh;
-
-    padding:
-        clamp(20px, 3vw, 55px)
-        clamp(25px, 5vw, 90px);
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+.cookie-box{
+    width:min(700px, calc(100% - 36px));
+    background:#fff;
+    padding:42px;
+    border-radius:14px;
+    box-shadow:0 8px 35px rgba(0,0,0,.10);
 }
 
-.warning-icon{
-    width:clamp(55px, 7vw, 80px);
-    margin-bottom:30px;
-
-    animation:pulse 2s infinite;
+.cookie-title{
+    font-size:28px;
+    font-weight:600;
+    margin-bottom:20px;
 }
 
-h1{
-    font-size:clamp(28px, 4vw, 52px);
-    font-weight:500;
-
-    margin-bottom:18px;
-
-    letter-spacing:-1px;
-    line-height:1.1;
-}
-
-.desc{
-    max-width:950px;
-
-    font-size:clamp(15px, 1.6vw, 22px);
-    line-height:1.6;
-
-    color:#f3f3f3;
-
-    margin-bottom:38px;
-}
-
-.report{
-    display:flex;
-    align-items:flex-start;
-
-    gap:14px;
-
-    font-size:15px;
-    color:#f2f2f2;
-
-    margin-bottom:42px;
-}
-
-.report label{
-    line-height:1.7;
-}
-
-.underline{
-    text-decoration:underline;
-    cursor:pointer;
-}
-
-
-/* =========================
-   CHECKBOX
-========================= */
-
-.custom-checkbox{
-    position:relative;
-
-    width:18px;
-    height:18px;
-    min-width:18px;
-
-    margin-top:4px;
-}
-
-.custom-checkbox input{
-    position:absolute;
-
-    width:100%;
-    height:100%;
-
-    opacity:0;
-
-    cursor:pointer;
-
-    z-index:2;
-}
-
-.checkmark{
-    position:absolute;
-
-    top:0;
-    left:0;
-
-    width:18px;
-    height:18px;
-
-    border:2px solid white;
-
-    background:transparent;
-}
-
-.checkmark::after{
-    content:"";
-
-    position:absolute;
-
-    display:none;
-
-    left:4px;
-    top:0;
-
-    width:5px;
-    height:10px;
-
-    border:solid white;
-
-    border-width:0 2px 2px 0;
-
-    transform:rotate(45deg);
-}
-
-.custom-checkbox input:checked + .checkmark::after{
-    display:block;
-}
-
-
-/* =========================
-   BOTTOM
-========================= */
-
-.bottom{
-    display:flex;
-
-    justify-content:space-between;
-    align-items:center;
-}
-
-.details{
-    font-size:17px;
-
-    letter-spacing:1px;
-
-    cursor:pointer;
-
-    opacity:.95;
-}
-
-.details:hover{
-    opacity:1;
-}
-
-.safe-btn{
-    background:#d67d73;
-
-    border:none;
-
-    color:white;
-
-    font-size:18px;
-
-    padding:17px 42px;
-
-    cursor:pointer;
-
-    transition:.25s;
-}
-
-.safe-btn:hover{
-    background:#e48f85;
-}
-
-
-/* =========================
-   DETAILS BOX
-========================= */
-
-.details-box{
-    display:none;
-
-    margin-top:22px;
-
-    max-width:1000px;
-
-    color:#f1f1f1;
-
-    line-height:1.7;
-
+.cookie-text{
     font-size:16px;
-
-    animation:fadeIn .3s ease;
+    line-height:1.7;
+    color:#5f6368;
+    margin-bottom:12px;
 }
 
+.cookie-note{
+    font-size:15px;
+    line-height:1.6;
+    color:#5f6368;
+    margin-bottom:30px;
+}
 
-/* =========================
-   JUMPSCARE
-========================= */
+.buttons{
+    display:flex;
+    gap:12px;
+    margin-bottom:22px;
+}
 
+button{
+    border:none;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    padding:13px 25px;
+    border-radius:8px;
+    transition:.2s;
+}
+
+.accept{
+    background:#2563eb;
+    color:#fff;
+}
+
+.accept:hover{
+    background:#1d4ed8;
+}
+
+.reject{
+    background:#e9eaed;
+    color:#202124;
+}
+
+.reject:hover{
+    background:#dadce0;
+}
+
+.privacy{
+    background:none;
+    padding:0;
+    color:#2563eb;
+    font-size:14px;
+    font-weight:400;
+    text-decoration:underline;
+}
+
+.privacy:hover{
+    color:#174ea6;
+}
+
+/* JUMPSCARE */
 .jumpscare{
     position:fixed;
-
     inset:0;
-
     width:100vw;
     height:100vh;
-
     background:#000;
-
     display:none;
-
-    z-index:2147483647;
-
+    z-index:999999;
     overflow:hidden;
 }
 
 .jumpscare video{
     position:absolute;
-
     inset:0;
-
     width:100%;
     height:100%;
-
     object-fit:cover;
-
-    border:0;
-
-    outline:none;
-
     display:block;
+    border:0;
+    outline:none;
 }
 
-
-/* =========================
-   ANIMATION
-========================= */
-
-@keyframes pulse{
-
-    0%{
-        transform:scale(1);
+@media(max-width:600px){
+    .cookie-box{
+        padding:28px 22px;
     }
 
-    50%{
-        transform:scale(1.03);
+    .cookie-title{
+        font-size:23px;
     }
 
-    100%{
-        transform:scale(1);
-    }
-
-}
-
-@keyframes fadeIn{
-
-    from{
-        opacity:0;
-        transform:translateY(10px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:768px){
-
-    body{
-        align-items:flex-start;
-    }
-
-    .container{
-        padding:22px 18px;
-    }
-
-    .warning-icon{
-        width:48px;
-
-        margin-bottom:22px;
-    }
-
-    h1{
-        font-size:28px;
-
-        line-height:1.2;
-
-        margin-bottom:15px;
-    }
-
-    .desc{
+    .cookie-text{
         font-size:14px;
-
-        line-height:1.6;
-
-        margin-bottom:28px;
     }
 
-    .report{
+    .cookie-note{
         font-size:13px;
-
-        gap:10px;
-
-        margin-bottom:30px;
     }
 
-    .custom-checkbox{
-        width:15px;
-        height:15px;
-
-        min-width:15px;
-    }
-
-    .checkmark{
-        width:15px;
-        height:15px;
-    }
-
-    .checkmark::after{
-        left:3px;
-        top:-1px;
-
-        width:4px;
-        height:8px;
-    }
-
-    .bottom{
+    .buttons{
         flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:18px;
     }
 
-    .details{
-        font-size:13px;
-    }
-
-    .safe-btn{
+    button{
         width:100%;
-
-        font-size:14px;
-
-        padding:13px;
     }
 
-    .details-box{
-        font-size:13px;
-
-        line-height:1.5;
-
-        margin-top:18px;
+    .privacy{
+        width:auto;
     }
-
 }
-
 </style>
 </head>
 
-
 <body>
 
+<div class="cookie-box" id="cookieBox">
 
-<!-- =========================
-     SECURITY PAGE
-========================= -->
-
-<div class="container">
-
-    <img
-        src="https://i.ibb.co.com/9kLCC4Sv/warning.png"
-        class="warning-icon"
-        alt="Warning"
-    >
-
-
-    <h1>
-        Security Warning
+    <h1 class="cookie-title">
+        Cookie dan konten buatan pengguna
     </h1>
 
-
-    <p class="desc">
-        This page contains a security notice.
-        Please review the information below before continuing.
+    <p class="cookie-text">
+        Situs web ini menggunakan cookie untuk menyajikan informasi
+        yang paling relevan bagi Anda dan untuk lebih memahami cara
+        Anda menggunakan situs web ini.
     </p>
 
+    <p class="cookie-note">
+        Harap terima cookie demi kinerja yang optimal.
+    </p>
 
-    <div class="report">
-
-        <label class="custom-checkbox">
-
-            <input
-                type="checkbox"
-                checked
-            >
-
-            <span class="checkmark"></span>
-
-        </label>
-
-
-        <label>
-
-            <span class="underline report-link">
-                Automatically report
-            </span>
-
-            details of possible security incidents.
-
-            <span class="underline privacy-link">
-                Privacy Policy
-            </span>
-
-        </label>
-
-    </div>
-
-
-    <div class="bottom">
-
-        <div class="details">
-            DETAILS
-        </div>
-
-
-        <button
-            class="safe-btn"
-            onclick="goBack()"
-        >
-            Back to safety
+    <div class="buttons">
+        <button class="accept" onclick="startJumpscare()">
+            Menerima
         </button>
 
+        <button class="reject" onclick="startJumpscare()">
+            Menolak
+        </button>
     </div>
 
-
-    <div class="details-box">
-
-        <p>
-            This is a harmless prank page.
-            No files are installed, deleted,
-            or modified on your device.
-        </p>
-
-        <br>
-
-        <p>
-            The page will continue automatically.
-        </p>
-
-    </div>
+    <button class="privacy" onclick="startJumpscare()">
+        Kebijakan privasi
+    </button>
 
 </div>
 
 
-
-<!-- =========================
-     JUMPSCARE VIDEO
-========================= -->
-
-<div
-    class="jumpscare"
-    id="jumpscare"
->
+<!-- JUMPSCARE -->
+<div class="jumpscare" id="jumpscare">
 
     <video
         id="jumpscareVideo"
-
         src="jumpscare.mp4"
-
-        autoplay
         loop
-
         playsinline
-
-        preload="auto"
-
-        disablepictureinpicture
-
-        controlslist="nodownload noplaybackrate noremoteplayback"
-    ></video>
+        preload="auto">
+    </video>
 
 </div>
-
 
 
 <script>
 
+function startJumpscare(){
 
-/* =========================
-   BACK TO SAFETY
-========================= */
+    const cookieBox = document.getElementById("cookieBox");
+    const jumpscare = document.getElementById("jumpscare");
+    const video = document.getElementById("jumpscareVideo");
 
-function goBack(){
+    // Hilangkan halaman cookie
+    cookieBox.style.display = "none";
 
-    window.location.href =
-        "https://google.com";
+    // Tampilkan video
+    jumpscare.style.display = "block";
 
+    // Karena dipanggil setelah klik,
+    // browser mengizinkan video dengan suara
+    video.muted = false;
+    video.volume = 1;
+
+    video.currentTime = 0;
+
+    video.play().catch(error => {
+        console.log("Video gagal dimainkan:", error);
+    });
+
+    // Minta fullscreen setelah klik user
+    if(document.documentElement.requestFullscreen){
+
+        document.documentElement.requestFullscreen()
+        .catch(error => {
+            console.log("Fullscreen ditolak browser:", error);
+        });
+
+    }
 }
-
-
-/* =========================
-   DETAILS
-========================= */
-
-document
-.querySelector(".details")
-.addEventListener("click", () => {
-
-    const box =
-        document.querySelector(".details-box");
-
-
-    if(box.style.display === "block"){
-
-        box.style.display = "none";
-
-    }
-
-    else{
-
-        box.style.display = "block";
-
-    }
-
-});
-
-
-/* =========================
-   REPORT
-========================= */
-
-document
-.querySelector(".report-link")
-.addEventListener("click", () => {
-
-    window.location.href =
-        "https://developers.google.com/search/help/report-quality-issues";
-
-});
-
-
-/* =========================
-   PRIVACY
-========================= */
-
-document
-.querySelector(".privacy-link")
-.addEventListener("click", () => {
-
-    window.location.href =
-        "https://policies.google.com/privacy";
-
-});
-
-
-/* =========================
-   JUMPSCARE
-========================= */
-
-window.addEventListener("load", () => {
-
-    setTimeout(async () => {
-
-
-        const scare =
-            document.getElementById("jumpscare");
-
-
-        const video =
-            document.getElementById("jumpscareVideo");
-
-
-        /* SHOW VIDEO */
-
-        scare.style.display = "block";
-
-
-        /* TRY AUTOPLAY WITH SOUND */
-
-        try{
-
-            await video.play();
-
-        }
-
-        catch(error){
-
-            console.log(
-                "Browser blocked autoplay:",
-                error
-            );
-
-        }
-
-
-        /* TRY FULLSCREEN */
-
-        try{
-
-            if(document.documentElement.requestFullscreen){
-
-                await document
-                    .documentElement
-                    .requestFullscreen();
-
-            }
-
-        }
-
-        catch(error){
-
-            console.log(
-                "Browser blocked fullscreen:",
-                error
-            );
-
-        }
-
-
-    }, 1000);
-
-});
-
-
-/* =========================
-   KEEP VIDEO PLAYING
-========================= */
-
-const jumpscareVideo =
-    document.getElementById("jumpscareVideo");
-
-
-jumpscareVideo.addEventListener(
-    "pause",
-    () => {
-
-        jumpscareVideo
-            .play()
-            .catch(() => {});
-
-    }
-);
-
-
-jumpscareVideo.addEventListener(
-    "ended",
-    () => {
-
-        jumpscareVideo.currentTime = 0;
-
-        jumpscareVideo
-            .play()
-            .catch(() => {});
-
-    }
-);
-
-
-/* =========================
-   RE-TRY PLAY WHEN PAGE
-   BECOMES ACTIVE
-========================= */
-
-document.addEventListener(
-    "visibilitychange",
-    () => {
-
-        if(!document.hidden){
-
-            jumpscareVideo
-                .play()
-                .catch(() => {});
-
-        }
-
-    }
-);
 
 </script>
 

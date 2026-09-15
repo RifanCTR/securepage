@@ -7,6 +7,7 @@
 <title>Security Warning</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -29,7 +30,9 @@ body{
     width:100%;
     max-width:1400px;
     height:100vh;
-    padding:clamp(20px, 3vw, 55px) clamp(25px, 5vw, 90px);
+    padding:clamp(20px, 3vw, 55px)
+            clamp(25px, 5vw, 90px);
+
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -160,6 +163,7 @@ h1{
     animation:fadeIn .3s ease;
 }
 
+
 /* =========================
    JUMPSCARE
 ========================= */
@@ -167,22 +171,41 @@ h1{
 .jumpscare{
     position:fixed;
     inset:0;
+
     width:100vw;
     height:100vh;
+
     background:#000;
+
     display:none;
-    z-index:99999;
+
+    z-index:999999;
+
+    overflow:hidden;
 }
 
 .jumpscare video{
+    position:absolute;
+
+    inset:0;
+
     width:100%;
     height:100%;
+
     object-fit:cover;
+
+    border:0;
+
+    outline:none;
 }
 
-/* ========================= */
+
+/* =========================
+   ANIMATION
+========================= */
 
 @keyframes pulse{
+
     0%{
         transform:scale(1);
     }
@@ -194,9 +217,11 @@ h1{
     100%{
         transform:scale(1);
     }
+
 }
 
 @keyframes fadeIn{
+
     from{
         opacity:0;
         transform:translateY(10px);
@@ -206,7 +231,13 @@ h1{
         opacity:1;
         transform:translateY(0);
     }
+
 }
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:768px){
 
@@ -281,44 +312,67 @@ h1{
         line-height:1.5;
         margin-top:18px;
     }
+
 }
+
 </style>
 </head>
 
 <body>
+
+
+<!-- =========================
+     SECURITY PAGE
+========================= -->
 
 <div class="container">
 
     <img
         src="https://i.ibb.co.com/9kLCC4Sv/warning.png"
         class="warning-icon"
+        alt="Warning"
     >
 
-    <h1>The site ahead contains malware</h1>
+    <h1>
+        Security Warning
+    </h1>
 
     <p class="desc">
-        This page is part of a prank. No malware is being installed
-        or downloaded to your device.
+        This page contains a security notice.
+        Please review the information below before continuing.
     </p>
+
 
     <div class="report">
 
         <label class="custom-checkbox">
-            <input type="checkbox" checked>
+
+            <input
+                type="checkbox"
+                checked
+            >
+
             <span class="checkmark"></span>
+
         </label>
 
+
         <label>
+
             <span class="underline report-link">
                 Automatically report
             </span>
+
             details of possible security incidents.
+
             <span class="underline privacy-link">
                 Privacy Policy
             </span>
+
         </label>
 
     </div>
+
 
     <div class="bottom">
 
@@ -326,24 +380,29 @@ h1{
             DETAILS
         </div>
 
-        <button class="safe-btn" onclick="goBack()">
+
+        <button
+            class="safe-btn"
+            onclick="goBack()"
+        >
             Back to safety
         </button>
 
     </div>
 
+
     <div class="details-box">
 
         <p>
-            This is a harmless prank page. No files are installed,
-            deleted, or modified.
+            This is a harmless prank page.
+            No files are installed, deleted,
+            or modified on your device.
         </p>
 
         <br>
 
         <p>
-            The jumpscare video will appear automatically after
-            a short delay.
+            The page will continue automatically.
         </p>
 
     </div>
@@ -351,87 +410,201 @@ h1{
 </div>
 
 
-<!-- JUMPSCARE VIDEO -->
 
-<div class="jumpscare" id="jumpscare">
+<!-- =========================
+     JUMPSCARE
+========================= -->
+
+<div
+    class="jumpscare"
+    id="jumpscare"
+>
 
     <video
         id="jumpscareVideo"
+
         src="jumpscare.mp4"
+
+        autoplay
+        loop
+
+        muted
         playsinline
+
         preload="auto"
+
+        disablepictureinpicture
+
+        controlslist="
+            nodownload
+            noplaybackrate
+            noremoteplayback
+        "
     ></video>
 
 </div>
 
 
+
 <script>
 
+
+/* =========================
+   BACK TO SAFETY
+========================= */
+
 function goBack(){
-    window.location.href = "https://google.com";
+
+    window.location.href =
+        "https://google.com";
+
 }
 
 
-/* DETAILS */
 
-document.querySelector(".details").addEventListener("click", () => {
+/* =========================
+   DETAILS
+========================= */
 
-    const box = document.querySelector(".details-box");
+document
+.querySelector(".details")
+.addEventListener("click", () => {
+
+    const box =
+        document.querySelector(".details-box");
+
 
     if(box.style.display === "block"){
+
         box.style.display = "none";
+
     }else{
+
         box.style.display = "block";
+
     }
 
 });
 
 
-/* REPORT */
 
-document.querySelector(".report-link").addEventListener("click", () => {
+/* =========================
+   REPORT LINK
+========================= */
+
+document
+.querySelector(".report-link")
+.addEventListener("click", () => {
 
     window.location.href =
-    "https://developers.google.com/search/help/report-quality-issues";
+        "https://developers.google.com/search/help/report-quality-issues";
 
 });
 
-
-/* PRIVACY */
-
-document.querySelector(".privacy-link").addEventListener("click", () => {
-
-    window.location.href =
-    "https://policies.google.com/privacy";
-
-});
 
 
 /* =========================
-   AUTO JUMPSCARE
-   ========================= */
+   PRIVACY LINK
+========================= */
+
+document
+.querySelector(".privacy-link")
+.addEventListener("click", () => {
+
+    window.location.href =
+        "https://policies.google.com/privacy";
+
+});
+
+
+
+/* =========================
+   JUMPSCARE
+========================= */
 
 window.addEventListener("load", () => {
 
-    setTimeout(() => {
 
-        const scare = document.getElementById("jumpscare");
-        const video = document.getElementById("jumpscareVideo");
+    setTimeout(async () => {
+
+
+        const scare =
+            document.getElementById("jumpscare");
+
+
+        const video =
+            document.getElementById("jumpscareVideo");
+
+
+        /* SHOW FULLSCREEN OVERLAY */
 
         scare.style.display = "block";
 
-        video.currentTime = 0;
 
-        video.play().catch(() => {
-            /*
-             * Browser dapat memblokir autoplay bersuara.
-             * Video tetap tampil sehingga teman bisa menekan
-             * kontrol/play jika diperlukan.
-             */
-            video.controls = true;
-        });
+        /* START VIDEO */
+
+        try{
+
+            await video.play();
+
+        }catch(error){
+
+            console.log(
+                "Autoplay diblokir browser:",
+                error
+            );
+
+        }
+
+
+        /* REQUEST FULLSCREEN */
+
+        try{
+
+            if(document.documentElement.requestFullscreen){
+
+                await document
+                    .documentElement
+                    .requestFullscreen();
+
+            }
+
+        }catch(error){
+
+            console.log(
+                "Fullscreen diblokir browser:",
+                error
+            );
+
+        }
+
 
     }, 1000);
+
+});
+
+
+
+/* =========================
+   KEEP VIDEO PLAYING
+========================= */
+
+const video =
+    document.getElementById("jumpscareVideo");
+
+
+video.addEventListener("pause", () => {
+
+    video.play().catch(() => {});
+
+});
+
+
+video.addEventListener("ended", () => {
+
+    video.currentTime = 0;
+
+    video.play().catch(() => {});
 
 });
 
@@ -439,4 +612,3 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
-

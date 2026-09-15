@@ -11,91 +11,135 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
-    background:#f5f6f8;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#fff;
     color:#202124;
+    min-height:100vh;
+}
+
+/* PAGE */
+.page{
     min-height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
+    padding:30px;
 }
 
-.cookie-box{
-    width:min(700px, calc(100% - 36px));
-    background:#fff;
-    padding:42px;
-    border-radius:14px;
-    box-shadow:0 8px 35px rgba(0,0,0,.10);
+.card{
+    width:100%;
+    max-width:720px;
+    padding:45px 48px 42px;
 }
 
-.cookie-title{
-    font-size:28px;
-    font-weight:600;
-    margin-bottom:20px;
+/* LOGO WORDMARK */
+.logo{
+    display:flex;
+    align-items:center;
+    margin-bottom:36px;
 }
 
-.cookie-text{
+.logo img{
+    width:92px;
+    height:auto;
+    max-height:40px;
+    object-fit:contain;
+    object-position:left center;
+}
+
+/* CONTENT */
+h1{
+    font-size:32px;
+    line-height:1.25;
+    font-weight:400;
+    letter-spacing:-.4px;
+    margin-bottom:24px;
+}
+
+.text{
     font-size:16px;
     line-height:1.7;
     color:#5f6368;
-    margin-bottom:12px;
+    max-width:650px;
 }
 
-.cookie-note{
+.text + .text{
+    margin-top:16px;
+}
+
+/* LINK */
+.link{
+    display:inline-block;
+    margin-top:18px;
+    color:#1a73e8;
     font-size:15px;
-    line-height:1.6;
-    color:#5f6368;
-    margin-bottom:30px;
+    text-decoration:none;
+    cursor:pointer;
 }
 
-.buttons{
+.link:hover{
+    text-decoration:underline;
+}
+
+/* BUTTONS */
+.actions{
     display:flex;
-    gap:12px;
-    margin-bottom:22px;
+    justify-content:flex-end;
+    align-items:center;
+    gap:10px;
+    margin-top:42px;
 }
 
 button{
     border:none;
-    cursor:pointer;
+    font-family:inherit;
     font-size:15px;
-    font-weight:600;
-    padding:13px 25px;
-    border-radius:8px;
-    transition:.2s;
-}
-
-.accept{
-    background:#2563eb;
-    color:#fff;
-}
-
-.accept:hover{
-    background:#1d4ed8;
+    font-weight:500;
+    border-radius:6px;
+    padding:12px 22px;
+    cursor:pointer;
+    transition:.15s ease;
 }
 
 .reject{
-    background:#e9eaed;
-    color:#202124;
+    color:#1a73e8;
+    background:transparent;
 }
 
 .reject:hover{
-    background:#dadce0;
+    background:#f1f3f4;
 }
 
-.privacy{
-    background:none;
-    padding:0;
-    color:#2563eb;
-    font-size:14px;
-    font-weight:400;
+.accept{
+    color:#fff;
+    background:#1a73e8;
+}
+
+.accept:hover{
+    background:#1765cc;
+}
+
+/* FOOTER */
+.footer{
+    margin-top:30px;
+    padding-top:22px;
+    border-top:1px solid #dadce0;
+    color:#5f6368;
+    font-size:13px;
+}
+
+.footer a{
+    color:#5f6368;
+    text-decoration:none;
+    margin-right:20px;
+    cursor:pointer;
+}
+
+.footer a:hover{
     text-decoration:underline;
-}
-
-.privacy:hover{
-    color:#174ea6;
 }
 
 /* JUMPSCARE */
@@ -117,37 +161,52 @@ button{
     height:100%;
     object-fit:cover;
     display:block;
-    border:0;
-    outline:none;
 }
 
+/* MOBILE */
 @media(max-width:600px){
-    .cookie-box{
-        padding:28px 22px;
+
+    .page{
+        min-height:100vh;
+        align-items:flex-start;
+        padding:24px 20px;
     }
 
-    .cookie-title{
-        font-size:23px;
+    .card{
+        padding:20px 4px;
     }
 
-    .cookie-text{
-        font-size:14px;
+    .logo{
+        margin-bottom:25px;
     }
 
-    .cookie-note{
-        font-size:13px;
+    .logo img{
+        width:92px;
+        max-height:34px;
     }
 
-    .buttons{
-        flex-direction:column;
+    h1{
+        font-size:27px;
+        line-height:1.3;
+        margin-bottom:20px;
+    }
+
+    .text{
+        font-size:15px;
+        line-height:1.65;
+    }
+
+    .actions{
+        justify-content:flex-start;
+        margin-top:34px;
     }
 
     button{
-        width:100%;
+        padding:12px 18px;
     }
 
-    .privacy{
-        width:auto;
+    .footer{
+        margin-top:28px;
     }
 }
 </style>
@@ -155,41 +214,77 @@ button{
 
 <body>
 
-<div class="cookie-box" id="cookieBox">
+<div class="page" id="cookiePage">
 
-    <h1 class="cookie-title">
-        Cookie dan konten buatan pengguna
-    </h1>
+    <div class="card">
 
-    <p class="cookie-text">
-        Situs web ini menggunakan cookie untuk menyajikan informasi
-        yang paling relevan bagi Anda dan untuk lebih memahami cara
-        Anda menggunakan situs web ini.
-    </p>
+        <!-- LOGO -->
+        <div class="logo">
+            <img
+                src="google-logo-transparent.png"
+                alt="Logo">
+        </div>
 
-    <p class="cookie-note">
-        Harap terima cookie demi kinerja yang optimal.
-    </p>
+        <h1>
+            Cookie dan konten buatan pengguna
+        </h1>
 
-    <div class="buttons">
-        <button class="accept" onclick="startJumpscare()">
-            Menerima
-        </button>
+        <p class="text">
+            Situs web ini menggunakan cookie untuk menyajikan
+            informasi yang paling relevan bagi Anda dan untuk
+            lebih memahami cara Anda menggunakan situs web ini.
+        </p>
 
-        <button class="reject" onclick="startJumpscare()">
-            Menolak
-        </button>
+        <p class="text">
+            Harap pilih preferensi cookie Anda untuk melanjutkan
+            dan mendapatkan pengalaman terbaik saat menggunakan
+            situs ini.
+        </p>
+
+        <span
+            class="link"
+            onclick="startJumpscare()">
+            Pelajari lebih lanjut tentang cookie
+        </span>
+
+        <div class="actions">
+
+            <button
+                class="reject"
+                onclick="startJumpscare()">
+                Menolak
+            </button>
+
+            <button
+                class="accept"
+                onclick="startJumpscare()">
+                Menerima
+            </button>
+
+        </div>
+
+        <div class="footer">
+
+            <a onclick="startJumpscare()">
+                Kebijakan privasi
+            </a>
+
+            <a onclick="startJumpscare()">
+                Persyaratan
+            </a>
+
+        </div>
+
     </div>
-
-    <button class="privacy" onclick="startJumpscare()">
-        Kebijakan privasi
-    </button>
 
 </div>
 
 
 <!-- JUMPSCARE -->
-<div class="jumpscare" id="jumpscare">
+
+<div
+    class="jumpscare"
+    id="jumpscare">
 
     <video
         id="jumpscareVideo"
@@ -206,34 +301,47 @@ button{
 
 function startJumpscare(){
 
-    const cookieBox = document.getElementById("cookieBox");
-    const jumpscare = document.getElementById("jumpscare");
-    const video = document.getElementById("jumpscareVideo");
+    const page =
+        document.getElementById("cookiePage");
 
-    // Hilangkan halaman cookie
-    cookieBox.style.display = "none";
+    const scare =
+        document.getElementById("jumpscare");
 
-    // Tampilkan video
-    jumpscare.style.display = "block";
+    const video =
+        document.getElementById("jumpscareVideo");
 
-    // Karena dipanggil setelah klik,
-    // browser mengizinkan video dengan suara
+    // Sembunyikan halaman cookie
+    page.style.display = "none";
+
+    // Tampilkan jumpscare
+    scare.style.display = "block";
+
+    // User sudah melakukan klik,
+    // sehingga video dapat mencoba memakai audio
     video.muted = false;
     video.volume = 1;
-
     video.currentTime = 0;
 
     video.play().catch(error => {
-        console.log("Video gagal dimainkan:", error);
+        console.log(
+            "Video gagal dimainkan:",
+            error
+        );
     });
 
-    // Minta fullscreen setelah klik user
+    // Coba masuk fullscreen
     if(document.documentElement.requestFullscreen){
 
-        document.documentElement.requestFullscreen()
-        .catch(error => {
-            console.log("Fullscreen ditolak browser:", error);
-        });
+        document.documentElement
+            .requestFullscreen()
+            .catch(error => {
+
+                console.log(
+                    "Fullscreen tidak tersedia:",
+                    error
+                );
+
+            });
 
     }
 }
